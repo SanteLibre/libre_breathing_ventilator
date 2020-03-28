@@ -8,12 +8,13 @@ pip install flask
 # copy if found the lxsession folder for
 if [ ! -d "/home/pi/.config/lxsession" ]
 then
-    cp -r  /etc/xdg/lxsession .
-    cd /home/pi/.config/lxsession/LXDE-pi/
-    echo @python /home/pi/flask/html.py >> ./autostart
-    echo @chromium --kiosk --incognito http://localhost:5000 >> ./autostart
-    echo @xset s off >> ./autostart
-    echo @xset -dpms >> ./autostart
-    echo @xset s noblank >> ./autostart
+    cp -r  /etc/xdg/lxsession /home/pi/.config/
+    cd /home/pi/.config/lxsession/LXDE-pi
+    cat ./autostart
+    echo @python /home/pi/flask/html.py >> /home/pi/.config/lxsession/LXDE-pi//autostart
+    echo @chromium --kiosk --incognito http://localhost:5000 >> /home/pi/.config/lxsession/LXDE-pi/autostart
+    echo @xset s off >> /home/pi/.config/lxsession/LXDE-pi/autostart
+    echo @xset -dpms >> /home/pi/.config/lxsession/LXDE-pi/autostart
+    echo @xset s noblank >> /home/pi/.config/lxsession/LXDE-pi/autostart
 fi
 
