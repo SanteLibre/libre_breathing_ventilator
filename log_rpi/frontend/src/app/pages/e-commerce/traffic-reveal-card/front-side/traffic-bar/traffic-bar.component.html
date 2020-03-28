@@ -1,0 +1,15 @@
+<!--
+  ~ Copyright (c) Akveo 2019. All Rights Reserved.
+  ~ Dual-licensed under the Single Application / Multi Application License (when this software was purchased) and GNU AFFERO GENERAL PUBLIC LICENSE Version 3 (when it was not).
+  ~ See LICENSE_SINGLE_APP / LICENSE_MULTI_APP / LICENSE_AGPL in the 'docs' folder for license information on type of license applicable.
+  -->
+
+<span class="value-prev caption">{{ barData.prevDate }}</span>
+<div class="progress-line-container" [style.height.%]="barData.prevValue">
+  <div class="progress-line-prev"></div>
+</div>
+<div class="progress-line-container" [style.height.%]="barData.nextValue">
+  <div class="progress-line-now" [class.success]="successDelta" [class.failure]="!successDelta">
+  </div>
+</div>
+<span class="value-now caption">{{ barData.nextDate }}</span>

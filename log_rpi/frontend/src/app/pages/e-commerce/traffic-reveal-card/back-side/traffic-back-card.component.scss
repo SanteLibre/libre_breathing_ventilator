@@ -1,0 +1,37 @@
+/*!
+ * Copyright (c) Akveo 2019. All Rights Reserved.
+ * Dual-licensed under the Single Application / Multi Application License (when this software was purchased) and GNU AFFERO GENERAL PUBLIC LICENSE Version 3 (when it was not).
+ * See LICENSE_SINGLE_APP / LICENSE_MULTI_APP / LICENSE_AGPL in the 'docs' folder for license information on type of license applicable.
+ */
+
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  nb-card-body {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  ngx-traffic-bar-chart {
+    flex: 1;
+    position: relative;
+
+    ::ng-deep {
+      canvas {
+        border-bottom-left-radius: nb-theme(card-border-radius);
+        border-bottom-right-radius: nb-theme(card-border-radius);
+      }
+
+      .echart {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

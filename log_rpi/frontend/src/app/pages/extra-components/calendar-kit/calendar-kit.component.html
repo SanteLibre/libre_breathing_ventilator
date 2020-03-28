@@ -1,0 +1,18 @@
+<!--
+  ~ Copyright (c) Akveo 2019. All Rights Reserved.
+  ~ Dual-licensed under the Single Application / Multi Application License (when this software was purchased) and GNU AFFERO GENERAL PUBLIC LICENSE Version 3 (when it was not).
+  ~ See LICENSE_SINGLE_APP / LICENSE_MULTI_APP / LICENSE_AGPL in the 'docs' folder for license information on type of license applicable.
+  -->
+
+<nb-card>
+  <nb-card-header>
+    <p><code>NbCalendarKitModule</code> is a module that contains multiple useful components for building custom calendars.
+      So if you think our calendars is not enough powerful for you just use calendar-kit and build your own calendar!</p>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-calendar-month-picker
+      [(month)]="month"
+      [cellComponent]="monthCellComponent"
+    ></nb-calendar-month-picker>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,21 @@
+/*!
+ * Copyright (c) Akveo 2019. All Rights Reserved.
+ * Dual-licensed under the Single Application / Multi Application License (when this software was purchased) and GNU AFFERO GENERAL PUBLIC LICENSE Version 3 (when it was not).
+ * See LICENSE_SINGLE_APP / LICENSE_MULTI_APP / LICENSE_AGPL in the 'docs' folder for license information on type of license applicable.
+ */
+
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  .summary-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    background-color: nb-theme(background-basic-color-2);
+    justify-content: space-between;
+    padding: 1.5rem 4rem 1rem;
+    border: 1px solid nb-theme(border-basic-color-3);
+    border-left: none;
+    border-right: none;
+  }
+}

@@ -1,0 +1,38 @@
+<!--
+  ~ Copyright (c) Akveo 2019. All Rights Reserved.
+  ~ Dual-licensed under the Single Application / Multi Application License (when this software was purchased) and GNU AFFERO GENERAL PUBLIC LICENSE Version 3 (when it was not).
+  ~ See LICENSE_SINGLE_APP / LICENSE_MULTI_APP / LICENSE_AGPL in the 'docs' folder for license information on type of license applicable.
+  -->
+
+<div class="row">
+  <div class="col-md-12 col-lg-4 col-xxxl-4">
+    <nb-card>
+      <nb-card-header>Common Datepicker</nb-card-header>
+      <nb-card-body>
+        <input nbInput
+               placeholder="Form Picker"
+               [nbDatepicker]="formpicker">
+        <nb-datepicker #formpicker></nb-datepicker>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-md-12 col-lg-4 col-xxxl-4">
+    <nb-card>
+      <nb-card-header>Datepicker With Range</nb-card-header>
+      <nb-card-body>
+        <input nbInput placeholder="Range Picker" [nbDatepicker]="rangepicker">
+        <nb-rangepicker #rangepicker></nb-rangepicker>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-12 col-lg-4 col-xxxl-4">
+    <nb-card>
+      <nb-card-header>Datepicker With Disabled Min Max Values</nb-card-header>
+      <nb-card-body>
+        <input nbInput placeholder="Min Max Picker" [nbDatepicker]="picker">
+        <nb-datepicker #picker [min]="min" [max]="max"></nb-datepicker>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
