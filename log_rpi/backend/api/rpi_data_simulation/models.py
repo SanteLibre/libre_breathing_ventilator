@@ -3,26 +3,25 @@ class Data:
         self.v = 450
         self.max_v = 550
         self.data = []
-        self.max_size = 150
+        self.max_size = 100
         self.i = 0
-        self.uid = 0
 
     def get_data(self):
-        self.uid += 1
-        if self.v > self.max_v:
-            self.v = 0
-        else:
-            self.v += 3
+        for u in range(3):
+            if self.v > self.max_v:
+                self.v = 0
+            else:
+                self.v += 3
 
-        if len(self.data) < self.max_size:
-            # append
-            self.data.append(self.v)
-        else:
-            # replace
-            self.i += 1
-            if self.i >= self.max_size:
-                self.i = 0
-            self.data[self.i] = self.v
+            if len(self.data) < self.max_size:
+                # append
+                self.data.append(self.v)
+            else:
+                # replace
+                self.i += 1
+                if self.i >= self.max_size:
+                    self.i = 0
+                self.data[self.i] = self.v
 
         # transform = []
         # for i in range(len(self.data)):

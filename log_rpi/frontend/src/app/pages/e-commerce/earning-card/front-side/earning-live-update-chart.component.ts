@@ -158,7 +158,7 @@ export class EarningLiveUpdateChartComponent implements AfterViewInit, OnDestroy
               data: this.liveUpdateChartData,
             },
       ],
-      animation: true,
+      animation: false,
     };
   }
 

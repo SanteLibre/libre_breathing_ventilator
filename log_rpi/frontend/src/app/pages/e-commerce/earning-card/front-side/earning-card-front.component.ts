@@ -29,6 +29,8 @@ export class EarningCardFrontComponent implements OnDestroy, OnInit {
   currentTheme: string;
   earningLiveUpdateCardData: LiveUpdateChart;
   liveUpdateChartData: { value: [string, number] }[];
+  liveUpdateChartData2: { value: [string, number] }[];
+  liveUpdateChartData3: { value: [string, number] }[];
 
   constructor(private themeService: NbThemeService,
               private apiService: ApiService,
@@ -68,7 +70,7 @@ export class EarningCardFrontComponent implements OnDestroy, OnInit {
       this.intervalSubscription.unsubscribe();
     }
 
-    this.intervalSubscription = interval(100)
+    this.intervalSubscription = interval(200)
       .pipe(
         takeWhile(() => this.alive),
         // switchMap(() => this.earningService.getEarningLiveUpdateCardData(currency)),
