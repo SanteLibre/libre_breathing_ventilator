@@ -1,9 +1,14 @@
-from flask_script import Manager
-from flask_migrate import Migrate, MigrateCommand
+import datetime
+import random
+
 from api import create_app
 from api.db import db
+from flask_migrate import Migrate, MigrateCommand
+from flask_script import Manager
 
 # sets up the app
+from log_rpi.backend.api.rpi_data_simulation.populate_db import populate_db
+
 app = create_app()
 
 manager = Manager(app)
@@ -35,5 +40,12 @@ def recreate_db():
     db.session.commit()
 
 
+@manager.command
+def populate_db_sim():
+    populate_db(simulation=True)
+
+
+
 if __name__ == "__main__":
     manager.run()
+
