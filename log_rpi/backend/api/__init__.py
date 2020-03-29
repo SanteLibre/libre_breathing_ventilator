@@ -79,7 +79,7 @@ def create_app(test_config=None):
     db.init_app(app)  # initialize Flask SQLALchemy with this flask app
     Migrate(app, db)
 
-    init_jtw_security(app)
+    # init_jtw_security(app)
 
     # register error Handler
     app.register_error_handler(Exception, all_exception_handler)
