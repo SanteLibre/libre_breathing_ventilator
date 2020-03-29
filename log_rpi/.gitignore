@@ -1,3 +1,7 @@
 .idea
 .vscode
 *.pyc
+backend/bundle_env
+backend/api/bundle.db
+backend/api.log
+frontend_local/node_modules
