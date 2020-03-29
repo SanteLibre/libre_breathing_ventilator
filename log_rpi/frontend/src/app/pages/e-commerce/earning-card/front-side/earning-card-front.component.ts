@@ -12,6 +12,7 @@ import { NbThemeService } from '@nebular/theme';
 import { interval , Subscription } from 'rxjs';
 import { switchMap, takeWhile } from 'rxjs/operators';
 import { LiveUpdateChart, EarningData } from '../../../../@core/interfaces/ecommerce/earning';
+import { ApiService } from '../../../../pages/ventilator-breathing-graph/services/init-data.service';
 
 @Component({
   selector: 'ngx-earning-card-front',
@@ -30,6 +31,7 @@ export class EarningCardFrontComponent implements OnDestroy, OnInit {
   liveUpdateChartData: { value: [string, number] }[];
 
   constructor(private themeService: NbThemeService,
+              private apiService: ApiService,
               private earningService: EarningData) {
     this.themeService.getJsTheme()
       .pipe(takeWhile(() => this.alive))
@@ -66,12 +68,15 @@ export class EarningCardFrontComponent implements OnDestroy, OnInit {
       this.intervalSubscription.unsubscribe();
     }
 
-    this.intervalSubscription = interval(200)
+    this.intervalSubscription = interval(100)
       .pipe(
         takeWhile(() => this.alive),
-        switchMap(() => this.earningService.getEarningLiveUpdateCardData(currency)),
+        // switchMap(() => this.earningService.getEarningLiveUpdateCardData(currency)),
+        switchMap(() => this.apiService.getDatasas()),
+        // switchMap(() => this.apiService.getDatas()),
       )
       .subscribe((liveUpdateChartData: any[]) => {
+        // console.debug(liveUpdateChartData);
         this.liveUpdateChartData = [...liveUpdateChartData];
       });
   }
