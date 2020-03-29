@@ -89,7 +89,8 @@ def all_exception_handler(error: Exception) -> Tuple[Response, int]:
     :returns Tuple of a Flask Response and int
     """
     if isinstance(error, marshmallow.ValidationError):
-        return create_response(message='Validation error', data=error.messages, status=400)
+        return create_response(message='Validation error', data=error.messages,
+                               status=400)
     if isinstance(error, HTTPException):
         return create_response(message=error.description, status=error.code)
     else:
