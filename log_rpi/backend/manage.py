@@ -42,7 +42,6 @@ def populate_db_sim():
     populate_db(simulation=True)
 
 
-
 if __name__ == "__main__":
     manager.run()
 
