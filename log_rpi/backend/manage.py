@@ -1,13 +1,10 @@
-import datetime
-import random
-
 from api import create_app
 from api.db import db
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
 # sets up the app
-from log_rpi.backend.api.rpi_data_simulation.populate_db import populate_db
+from log_rpi.backend.api.rpi_data.populate_db import populate_db
 
 app = create_app()
 
