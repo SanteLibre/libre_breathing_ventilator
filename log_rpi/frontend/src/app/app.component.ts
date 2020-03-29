@@ -1,7 +1,10 @@
 /*
  * Copyright (c) Akveo 2019. All Rights Reserved.
- * Dual-licensed under the Single Application / Multi Application License (when this software was purchased) and GNU AFFERO GENERAL PUBLIC LICENSE Version 3 (when it was not).
- * See LICENSE_SINGLE_APP / LICENSE_MULTI_APP / LICENSE_AGPL in the 'docs' folder for license information on type of license applicable.
+  * Dual-licensed under the Single Application / Multi Application License
+ * (when this software was purchased) and GNU AFFERO GENERAL PUBLIC LICENSE Version 3
+ * (when it was not).
+ * See LICENSE_SINGLE_APP / LICENSE_MULTI_APP / LICENSE_AGPL in the 'docs' folder
+ * for license information on type of license applicable.
  */
 import { Component, OnInit } from '@angular/core';
 import { NbTokenLocalStorage, NbAuthToken, NbPasswordAuthStrategy } from '@nebular/auth';
@@ -18,9 +21,9 @@ export class AppComponent implements OnInit {
               private authStrategy: NbPasswordAuthStrategy,
               private tokenStorage: NbTokenLocalStorage) {
 
-              // TODO: REMOVE BEFORE PROD
-              // for demo only: init localstorage with token for demo user when login for the first time
-              this.initTestUserToken();
+    // TODO: REMOVE BEFORE PROD
+    // for demo only: init localstorage with token for demo user when login for the first time
+    this.initTestUserToken();
   }
 
   ngOnInit(): void {
