@@ -114,36 +114,49 @@ export class EarningLiveUpdateChartComponent implements AfterViewInit, OnDestroy
       },
       series: [
         {
-          type: 'line',
-          symbol: 'circle',
-          sampling: 'average',
-          itemStyle: {
-            normal: {
-              opacity: 0,
+              type: 'line',
+              smooth: true,
+              symbolSize: 20,
+              itemStyle: {
+                normal: {
+                  opacity: 0,
+                },
+                emphasis: {
+                  color: '#ffffff',
+                  borderColor: earningLineTheme.itemBorderColor,
+                  borderWidth: 2,
+                  opacity: 1,
+                },
+              },
+              lineStyle: {
+                normal: {
+                  width: earningLineTheme.lineWidth,
+                  type: earningLineTheme.lineStyle,
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: earningLineTheme.lineGradFrom,
+                  }, {
+                    offset: 1,
+                    color: earningLineTheme.lineGradTo,
+                  }]),
+                  shadowColor: earningLineTheme.lineShadow,
+                  shadowBlur: 6,
+                  shadowOffsetY: 12,
+                },
+              },
+              areaStyle: {
+                normal: {
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: earningLineTheme.areaGradFrom,
+                  }, {
+                    offset: 1,
+                    color: earningLineTheme.areaGradTo,
+                  }]),
+                },
+              },
+              data: this.liveUpdateChartData,
             },
-            emphasis: {
-              opacity: 0,
-            },
-          },
-          lineStyle: {
-            normal: {
-              width: 0,
-            },
-          },
-          areaStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: earningLineTheme.gradFrom,
-              }, {
-                offset: 1,
-                color: earningLineTheme.gradTo,
-              }]),
-              opacity: 1,
-            },
-          },
-          data: this.liveUpdateChartData,
-        },
       ],
       animation: true,
     };
