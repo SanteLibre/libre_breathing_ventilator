@@ -15,12 +15,12 @@ def get_data_date_range():
             start_date = int(start_date)
         except ValueError:
             return jsonify("start_date must be of the format yyyymmddhhMMSS")
-        query = query.filter(VentilatorData.date >= start_date)
+        query = query.filter(VentilatorData.time >= start_date)
     if end_date:
         try:
             end_date = int(end_date)
         except TypeError:
             jsonify("start_date must be of the format yyyymmddhhMMSS")
-        query = query.filter(VentilatorData.date <= end_date)
+        query = query.filter(VentilatorData.time <= end_date)
     query_res = query.all()
     return jsonify(json_list=[result.to_dict() for result in query_res])
