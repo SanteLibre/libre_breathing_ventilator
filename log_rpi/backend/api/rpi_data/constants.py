@@ -24,3 +24,7 @@ TIME_UNIT_MAP = {
 }
 
 FREESPACE_LIMIT = 1000
+TIME_UNIT_ADD = 'minute'  # can be changed for any time unit we want
+STEP_ADD = 2  # will generate data for each STEP_ADD TIME_UNIT_ADD
+TIME_UNIT_DELETE = 'hour'  # can be changed for any time unit we want
+STEP_DELETE = 1  # will delete the STEP_DELETE last TIME_UNIT_DELETE

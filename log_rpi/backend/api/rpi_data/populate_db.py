@@ -6,15 +6,25 @@ from sqlalchemy.exc import OperationalError, DatabaseError
 
 from api import db
 from api.db import VentilatorData, recover_db
-from api.rpi_data.constants import TIME_UNIT_MAP, FREESPACE_LIMIT
-
-TIME_UNIT_ADD = 'minute'  # can be changed for any time unit we want (must be plural)
-STEP_ADD = 2  # will generate data for each STEP_ADD TIME_UNIT_ADD
-TIME_UNIT_DELETE = 'hour'  # can be changed for any time unit we want (must be plural)
-STEP_DELETE = 1  # will delete the STEP_DELETE last TIME_UNIT_DELETE
+from api.rpi_data.constants import (
+    TIME_UNIT_MAP,
+    FREESPACE_LIMIT,
+    TIME_UNIT_ADD,
+    TIME_UNIT_DELETE,
+    STEP_ADD,
+    STEP_DELETE
+)
 
 
 def populate_db(simulation=False, **kwargs):
+    """
+    Function to call when we receive data from the arduino.
+    It will validate the data and format it for the database.
+    It will then write in the database.
+    :param simulation: bool, if simulation=True generate some test data
+    :param kwargs: attributes to add to the database. see db.VentilatorData model
+    :return: None
+    """
     if not simulation:
         # maybe do some validation here
         insert_data(**kwargs)
@@ -45,6 +55,13 @@ def populate_db(simulation=False, **kwargs):
 
 
 def insert_data(**kwargs):
+    """
+    Inserts formatted data in ventilator_data table.
+    If db is somehow corrupt, tries to recover.
+
+    :param kwargs: attributes to add to the database. see db.VentilatorData model
+    :return: None
+    """
     data_to_add = db.VentilatorData(**kwargs)
     if not enough_freespace():
         delete_last_time_range()

@@ -44,6 +44,10 @@ def recreate_db():
 
 @manager.command
 def populate_db_sim():
+    """
+    Populates the db with test data
+    :return: None
+    """
     populate_db(simulation=True)
 
 

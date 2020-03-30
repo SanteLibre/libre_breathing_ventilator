@@ -22,6 +22,10 @@ class VentilatorData(db.Model):
     value3 = db.Column(db.Float())
 
     def to_dict(self):
+        """
+        useful to return results in endpoint.
+        :return: a dictionnary of the format {attribute_name: attribute_value, ...}
+        """
         return {
             'time': self.time,
             'array_float_1': [float(val) for val in self.array_float_1.split(',')],
@@ -34,6 +38,13 @@ class VentilatorData(db.Model):
 
 
 def recover_db(db_url):
+    """
+    Quick fix in case the db is corrupt.
+    Creates a backup of the corrupt db then creates a fresh new db.
+    :param db_url: path of the .db file
+    :return: nothing. might raise in edge cases.
+    """
+
     print('something went wrong with the database. Trying to recover')
     os.rename(db_url, f'{db_url}-backup')
     print('corrupted db backup created')
