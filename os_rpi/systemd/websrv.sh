@@ -33,7 +33,7 @@ sudo cp /tmp/${OE_CONFIG} /etc/systemd/system/${OE_SRV}.service
 sudo chmod 755 /etc/systemd/system/${OE_SRV}.service
 sudo chown root: /etc/systemd/system/${OE_SRV}.service
 
-echo -e "* Start ODOO on Startup"
+echo -e "* Start daemond on Startup"
 sudo systemctl daemon-reload
 sudo systemctl enable ${OE_CONFIG}.service
 
@@ -61,3 +61,7 @@ echo -e "* Security Init File"
 sudo cp /tmp/${OE_CONFIG} /etc/systemd/system/${OE_CLIENT}.service
 sudo chmod 755 /etc/systemd/system/${OE_CLIENT}.service
 sudo chown root: /etc/systemd/system/${OE_CLIENT}.service
+
+echo -e "* Start daemond on Startup"
+sudo systemctl daemon-reload
+sudo systemctl enable ${OE_CLIENT}.service
