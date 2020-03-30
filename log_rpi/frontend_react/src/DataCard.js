@@ -25,7 +25,7 @@ export default function DataCard({
   return (
     <Fragment>
       <Title className={classes.title}>{title}</Title>
-      <Typography component="p" variant="h2" className={classes.value} color="secondary">
+      <Typography component="p" variant="h1" className={classes.value} color="secondary">
         {value}
       </Typography>
       <Typography color="textSecondary" className={classes.unit}>

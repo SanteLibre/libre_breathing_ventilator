@@ -34,14 +34,14 @@ class Data:
         graph1 = []
         graph2 = []
         graph3 = []
-        card1 = round(random.uniform(0.0, 550), 2)
-        card2 = round(random.uniform(0.0, 550), 2)
-        card3 = round(random.uniform(0.0, 550), 2)
-        card4 = round(random.uniform(0.0, 550), 2)
-        card5 = round(random.uniform(0.0, 550), 2)
-        card6 = round(random.uniform(0.0, 550), 2)
-        card7 = round(random.uniform(0.0, 550), 2)
-        card8 = round(random.uniform(0.0, 550), 2)
+        card1 = round(random.uniform(0.0, 550), 1)
+        card2 = round(random.uniform(0.0, 550), 1)
+        card3 = round(random.uniform(0.0, 550), 1)
+        card4 = round(random.uniform(0.0, 550), 1)
+        card5 = round(random.uniform(0.0, 550), 1)
+        card6 = round(random.uniform(0.0, 550), 1)
+        card7 = round(random.uniform(0.0, 550), 1)
+        card8 = round(random.uniform(0.0, 550), 1)
         # for i in range(len(self.data)):
         #     graph1.append({"value": ["%s" % i, self.data[i]]})
         for k in range(self.max_size):
