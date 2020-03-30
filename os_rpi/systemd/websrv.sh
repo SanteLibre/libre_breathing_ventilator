@@ -22,6 +22,7 @@ User=${OE_USER}
 Group=${OE_USER}
 Restart=always
 RestartSec=5
+WorkingDirectory=${OE_HOME_lbv}/os_rpi/systemd
 ExecStart=${OE_HOME_lbv}/os_rpi/systemd/runSrv.sh
 StandardOutput=journal+console
 [Install]
@@ -51,6 +52,7 @@ User=${OE_USER}
 Group=${OE_USER}
 Restart=always
 RestartSec=5
+WorkingDirectory=${OE_HOME_lbv}/os_rpi/systemd
 ExecStart=${OE_HOME_lbv}/os_rpi/systemd/runService.sh
 StandardOutput=journal+console
 [Install]
