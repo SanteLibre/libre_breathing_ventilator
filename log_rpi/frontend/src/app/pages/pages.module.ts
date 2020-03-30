@@ -16,6 +16,7 @@ import { ThemeModule } from '../@theme/theme.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { PagesMenu } from './pages-menu';
 import { ECommerceModule } from './e-commerce/e-commerce.module';
+import { BreathingVentilatorModule } from './breathing_ventilator/breathing-ventilator.module';
 import { NbMenuModule } from '@nebular/theme';
 import { AuthModule } from '../@auth/auth.module';
 
@@ -29,6 +30,7 @@ const PAGES_COMPONENTS = [
     ThemeModule,
     DashboardModule,
     ECommerceModule,
+    BreathingVentilatorModule,
     NbMenuModule,
     MiscellaneousModule,
     AuthModule.forRoot(),
