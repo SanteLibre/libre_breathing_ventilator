@@ -13,28 +13,28 @@ sudo apt-get install git python3 python3-pip python3-venv virtualenv htop vim ti
 # Cleanning up the Boot process
 echo -e "\n--- Setting the splash screen config--"
 Configfile="$(basename /boot/config*)"
-if grep -Fxq "disable_splash=1" $Configfile
+if grep -Fxq "disable_splash=1" /boot/$Configfile
 then
     echo "\n--- Splash option already set --- "
 else
-    echo "disable_splash=1" >> $Configfile
+    echo "disable_splash=1" >> /boot/$Configfile
 fi
 
 echo -e "\n--- Disable the Raspberry Pi logo in the corner of the screen --"
 Configfile="/boot/cmdline.txt"
-if grep -Fxq "logo.nologo" $Configfile
+if grep -Fxq "logo.nologo" /boot/$Configfile
 then
     echo "\n--- Splash option already set --- "
 else
-    echo "logo.nologo" >> $Configfile
+    echo "logo.nologo" >> /boot/$Configfile
 fi
 
 echo -e "\n--- Disable the various bits of output from the kernel and friends --"
-if grep -Fxq "consoleblank=0 loglevel=1 quiet" $Configfile
+if grep -Fxq "consoleblank=0 loglevel=1 quiet" /boot/$Configfile
 then
     echo "\n--- Splash option already set --- "
 else
-    echo "consoleblank=0 loglevel=1 quiet" >> $Configfile
+    echo "consoleblank=0 loglevel=1 quiet" >> /boot/$Configfile
 fi
 
 # Set up the splash screen
