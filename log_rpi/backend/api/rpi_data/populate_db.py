@@ -2,9 +2,11 @@ import datetime
 import random
 import shutil
 
-from log_rpi.backend.api import db
-from log_rpi.backend.api.db import VentilatorData
-from log_rpi.backend.api.rpi_data.constants import TIME_UNIT_MAP, FREESPACE_LIMIT
+from sqlalchemy.exc import OperationalError, DatabaseError
+
+from api import db
+from api.db import VentilatorData, recover_db
+from api.rpi_data.constants import TIME_UNIT_MAP, FREESPACE_LIMIT
 
 TIME_UNIT_ADD = 'minute'  # can be changed for any time unit we want (must be plural)
 STEP_ADD = 2  # will generate data for each STEP_ADD TIME_UNIT_ADD
@@ -46,8 +48,14 @@ def insert_data(**kwargs):
     data_to_add = db.VentilatorData(**kwargs)
     if not enough_freespace():
         delete_last_time_range()
-    db.db.session.add(data_to_add)
-    db.db.session.commit()
+    try:
+        db.db.session.add(data_to_add)
+        db.db.session.commit()
+    except (OperationalError, DatabaseError, Exception):
+        # adding ugly broad Exception for lack of better option as we don't want the backend to stop running
+        recover_db(db.db.engine.url.database)
+        print("trying to insert data again")
+        insert_data(**kwargs)
 
 
 def enough_freespace():

@@ -1,4 +1,7 @@
+import os
+
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy_utils import create_database
 
 db = SQLAlchemy()
 
@@ -28,3 +31,34 @@ class VentilatorData(db.Model):
             'value2': self.value2,
             'value3': self.value3,
         }
+
+
+def recover_db(db_url):
+    print('something went wrong with the database. Trying to recover')
+    os.rename(db_url, f'{db_url}-backup')
+    print('corrupted db backup created')
+    create_database(f'sqlite:///{db_url}')
+
+    # this is kinda ugly and probably unnecessarily complicated, but it covers most of the cases
+    try:
+        db.create_all()
+    except RuntimeError as rte:
+        if rte.args[0].startswith('No application found.'):
+            pass
+        else:
+            raise
+    try:
+        db.session.rollback()
+    except RuntimeError as rte:
+        if rte.args[0].startswith('No application found.'):
+            pass
+        else:
+            raise
+    try:
+        db.session.commit()
+    except RuntimeError as rte:
+        if rte.args[0].startswith('No application found.'):
+            pass
+        else:
+            raise
+    print('new db created')
