@@ -10,7 +10,7 @@ sudo apt-get install git python3 python3-pip python3-venv virtualenv htop vim ti
 #--------------------------------------------------
 # Set-up python service
 #--------------------------------------------------
-
+./systemd/websrv.sh./
 
 
 #--------------------------------------------------
