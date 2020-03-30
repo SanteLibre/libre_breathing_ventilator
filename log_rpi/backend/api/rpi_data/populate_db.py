@@ -29,9 +29,10 @@ def populate_db(simulation=False, **kwargs):
             print(f'Creating data for date: {stringified_date}')
             # not the prettiest code.
             kwargs = {
-                'float_array1': [random.uniform(0.0, 200.0) for _ in range(size)],
-                'float_array2': [random.uniform(0.0, 200.0) for _ in range(size)],
-                'float_array3': [random.uniform(0.0, 200.0) for _ in range(size)],
+                'time': stringified_date,
+                'array_float_1': stringify_array([random.uniform(0.0, 200.0) for _ in range(size)]),
+                'array_float_2': stringify_array([random.uniform(0.0, 200.0) for _ in range(size)]),
+                'array_float_3': stringify_array([random.uniform(0.0, 200.0) for _ in range(size)]),
                 'value1': random.uniform(0.0, 200.0),
                 'value2': random.uniform(0.0, 200.0),
                 'value3': random.uniform(0.0, 200.0),
