@@ -85,7 +85,7 @@ fi
 #--------------------------------------------------
 echo -e "\n--- Installing virtualEnv ans setting it up--"
 
-cd ../../log_rpi/backend
+cd ../log_rpi/backend/
 virtualenv -p python3 bundle_env
 source bundle_env/bin/activate
 pip install -r requirements.txt
