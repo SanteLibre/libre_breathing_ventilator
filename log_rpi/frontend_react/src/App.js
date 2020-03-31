@@ -1,6 +1,7 @@
 import React, {useRef, useState, useEffect} from 'react';
 import {Grid, Paper, makeStyles, Container} from '@material-ui/core';
 import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
+import * as colors from '@material-ui/core/colors';
 
 import DataCard from './DataCard';
 import Chart from './Chart';
@@ -49,6 +50,27 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
+
+function getCardTextColor(index) {
+  const colorList = [
+    colors.blue, colors.amber, colors.cyan,
+    colors.deepOrange, colors.purple, colors.pink,
+    colors.yellow, colors.green
+  ];
+  return colorList[index][500];
+
+}
+
+function getGraphColor(index) {
+  const colorList = [
+    colors.blue, colors.amber, colors.pink,
+  ];
+  return colorList[index][500];
+
+}
+
+
+
 function App() {
   const classes = useStyles();
   const [response, setResponse] = useState({
@@ -76,7 +98,7 @@ function App() {
               {response.data.graphs?.map((data, index) => (
                 <Grid item key={index}>
                   <Paper className={classes.graphs}>
-                    <Chart title={`Chart ${index}`} data={data} />
+                    <Chart title={`Chart ${index}`} data={data} graphColor={getGraphColor(index)}/>
                   </Paper>
                 </Grid>
               ))}
@@ -89,6 +111,7 @@ function App() {
                       title={`Card ${index}`}
                       unit="by min"
                       value={data}
+                      textColor={getCardTextColor(index)}
                     />
                   </Paper>
                 </Grid>
