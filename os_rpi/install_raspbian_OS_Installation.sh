@@ -48,3 +48,9 @@ cd /home/pi/libre_breathing_ventilator/log_rpi/backend/
 virtualenv -p python3 bundle_env
 source bundle_env/bin/activate
 pip install -r requirements.txt
+
+
+#--------------------------------------------------
+# Base de donnée SQlite
+#--------------------------------------------------
+# Todo créer la base de donnée
