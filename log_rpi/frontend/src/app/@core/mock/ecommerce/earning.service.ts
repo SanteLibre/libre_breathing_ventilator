@@ -101,7 +101,7 @@ export class EarningService extends EarningData {
   getEarningCardData(currency: string): Observable<LiveUpdateChart> {
     const data = this.liveUpdateChartData[currency.toLowerCase()];
 
-    data.liveChart = this.getDefaultLiveChartData(150);
+    data.liveChart = this.getDefaultLiveChartData(0);
 
     return observableOf(data);
   }
