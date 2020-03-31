@@ -147,7 +147,7 @@ function App() {
               <Grid item xs={6}>
                 <Paper className={classes.paper}>
                   <DataCard
-                    title="O2 conc."
+                    title="O² conc."
                     unit="%"
                     value={response.data.cards.o2conc}
                     textColor={getColor(1)}
