@@ -51,37 +51,29 @@ function useInterval(callback, delay) {
 }
 
 
-function getCardTextColor(index) {
+function getColor(index) {
   const colorList = [
-    colors.blue, colors.amber, colors.cyan,
-    colors.deepOrange, colors.purple, colors.pink,
-    colors.yellow, colors.green
+    colors.lightBlue, colors.amber, colors.pink,
   ];
   return colorList[index][500];
 
 }
-
-function getGraphColor(index) {
-  const colorList = [
-    colors.blue, colors.amber, colors.pink,
-  ];
-  return colorList[index][500];
-
-}
-
 
 
 function App() {
   const classes = useStyles();
   const [response, setResponse] = useState({
-    data: [undefined, undefined, undefined],
+    data: {
+      graphs: [undefined , undefined, undefined],
+      cards: [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined]
+    },
   });
   useInterval(() => {
-    const url = 'http://localhost:3001/api/rpi_data_simulation/data';
+    const url = 'http://localhost:3001/api/rpi_data/data';
     fetch(url)
       .then(response => response.json())
       .then(setResponse);
-  }, 1000);
+  }, 200);
 
   const darkTheme = createMuiTheme({
     palette: {
@@ -95,27 +87,103 @@ function App() {
         <Grid className={classes.parentGrid} container justify="center" alignItems="center">
           <Grid container item spacing={1}>
             <Grid container item xs={8} direction="column" spacing={1}>
-              {response.data.graphs?.map((data, index) => (
-                <Grid item key={index}>
-                  <Paper className={classes.graphs}>
-                    <Chart title={`Chart ${index}`} data={data} graphColor={getGraphColor(index)}/>
-                  </Paper>
-                </Grid>
-              ))}
+              <Grid item>
+                <Paper className={classes.graphs}>
+                  <Chart title="PRESSURE mbar" data={response.data.graphs[0]} graphColor={getColor(0)}/>
+                </Paper>
+              </Grid>
+              <Grid item>
+                <Paper className={classes.graphs}>
+                  <Chart title="FLOW L/s" data={response.data.graphs[1]} graphColor={getColor(1)}/>
+                </Paper>
+              </Grid>
+              <Grid item>
+                <Paper className={classes.graphs}>
+                  <Chart title="VOLUME mL" data={response.data.graphs[2]} graphColor={getColor(2)}/>
+                </Paper>
+              </Grid>
             </Grid>
             <Grid container item xs={4} spacing={1}>
-              {response.data.cards?.map((data, index) => (
-                <Grid item xs={6} key={{index}}>
-                  <Paper className={classes.paper}>
-                    <DataCard
-                      title={`Card ${index}`}
-                      unit="by min"
-                      value={data}
-                      textColor={getCardTextColor(index)}
-                    />
-                  </Paper>
-                </Grid>
-              ))}
+              <Grid item xs={6}>
+                <Paper className={classes.paper}>
+                  <DataCard
+                    title="Ppeak"
+                    unit="cmh²0"
+                    value={response.data.cards.ppeak}
+                    textColor={getColor(0)}
+                  />
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper className={classes.paper}>
+                  <DataCard
+                    title="PEEP"
+                    unit="cmh²0"
+                    value={response.data.cards.peep}
+                    textColor={getColor(0)}
+                  />
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper className={classes.paper}>
+                  <DataCard
+                    title="Pmean"
+                    unit="cmh²0"
+                    value={response.data.cards.pmean}
+                    textColor={getColor(0)}
+                  />
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper className={classes.paper}>
+                  <DataCard
+                    title="RR"
+                    unit="r/min"
+                    value={response.data.cards.rr}
+                    textColor={getColor(1)}
+                  />
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper className={classes.paper}>
+                  <DataCard
+                    title="O² conc."
+                    unit="%"
+                    value={response.data.cards.o2conc}
+                    textColor={getColor(1)}
+                  />
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper className={classes.paper}>
+                  <DataCard
+                    title="VTe"
+                    unit="mL"
+                    value={response.data.cards.vte}
+                    textColor={getColor(2)}
+                  />
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper className={classes.paper}>
+                  <DataCard
+                    title="I:E ratio"
+                    unit=""
+                    value={response.data.cards.ie_ratio}
+                    textColor={getColor(2)}
+                  />
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper className={classes.paper}>
+                  <DataCard
+                    title="MVe"
+                    unit="L/min"
+                    value={response.data.cards.mve}
+                    textColor={getColor(2)}
+                  />
+                </Paper>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>

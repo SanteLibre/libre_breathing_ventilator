@@ -34,29 +34,40 @@ class Data:
         graph1 = []
         graph2 = []
         graph3 = []
-        card1 = round(random.uniform(0.0, 550), 1)
-        card2 = round(random.uniform(0.0, 550), 1)
-        card3 = round(random.uniform(0.0, 550), 1)
-        card4 = round(random.uniform(0.0, 550), 1)
-        card5 = round(random.uniform(0.0, 550), 1)
-        card6 = round(random.uniform(0.0, 550), 1)
-        card7 = round(random.uniform(0.0, 550), 1)
-        card8 = round(random.uniform(0.0, 550), 1)
+
+        ppeak = round(random.uniform(-99.0, 99), 1)
+        peep = round(random.uniform(-99.0, 99), 1)
+        pmean = round(random.uniform(-99.0, 99), 1)
+        rr = round(random.uniform(6.0, 40), 1)
+        o2conc = round(random.uniform(0.0, 100), 1)
+        vte = math.ceil(random.uniform(0.0, 1000))
+        ie_ratio = f"1:{random.randint(1, 4)}"
+        mve = round(random.uniform(0.0, 99), 1)
+
         # for i in range(len(self.data)):
         #     graph1.append({"value": ["%s" % i, self.data[i]]})
         for k in range(self.max_size):
             if k < len(self.data):
-                graph1.append({"value": ["2020/10/%s" % (k + 1), self.data[k]]})
-                graph2.append({"value": ["2020/10/%s" % (k + 1), math.sin(self.data[k])]})
-                graph3.append({"value": ["2020/10/%s" % (k + 1), math.cos(self.data[k])]})
+                graph1.append({"value": [k + 1, self.data[k]]})
+                graph2.append({"value": [k + 1, math.sin(self.data[k]) + 1]})
+                graph3.append({"value": [k + 1, math.cos(self.data[k]) + 1]})
             else:
-                graph1.append({"value": ["2020/10/%s" % (k + 1), 0]})
-                graph2.append({"value": ["2020/10/%s" % (k + 1), 0]})
-                graph3.append({"value": ["2020/10/%s" % (k + 1), 0]})
+                graph1.append({"value": [k + 1, 0]})
+                graph2.append({"value": [k + 1, 0]})
+                graph3.append({"value": [k + 1, 0]})
 
         value = {
             'graphs': [graph1, graph2, graph3],
-            'cards': [card1, card2, card3, card4, card5, card6, card7, card8]
+            'cards': {
+                'ppeak': ppeak,
+                'peep': peep,
+                'pmean': pmean,
+                'rr': rr,
+                'o2conc': o2conc,
+                'vte': vte,
+                'ie_ratio': ie_ratio,
+                'mve': mve
+            }
         }
 
         return value

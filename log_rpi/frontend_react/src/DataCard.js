@@ -29,7 +29,7 @@ export default function DataCard({
       <Typography component="p" variant="h1" className={classes.value} style={{color: textColor}}>
         {value}
       </Typography>
-      <Typography color="textSecondary" className={classes.unit} >
+      <Typography color="textSecondary" variant="h4" className={classes.unit} >
         {unit}
       </Typography>
     </Fragment>

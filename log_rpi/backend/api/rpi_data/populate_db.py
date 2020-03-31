@@ -1,6 +1,8 @@
 import datetime
+import math
 import random
 import shutil
+import time
 
 from sqlalchemy.exc import OperationalError, DatabaseError
 
@@ -12,8 +14,8 @@ from api.rpi_data.constants import (
     TIME_UNIT_ADD,
     TIME_UNIT_DELETE,
     STEP_ADD,
-    STEP_DELETE
-)
+    STEP_DELETE,
+    DATE_FORMAT)
 
 
 def populate_db(simulation=False, **kwargs):
@@ -33,24 +35,28 @@ def populate_db(simulation=False, **kwargs):
         # {"time", values_1 float[], values_2 float[], values_3 float[], v1, v2, v3}
         # say we get x (size) values every minute for the past day
         size = 6
-        now = datetime.datetime.now().replace(second=00, microsecond=00)  # replacing seconds for convenience
-        now_midnight = now.replace(hour=00, minute=00, second=00, microsecond=00)
-        time_ago = now - datetime.timedelta(**{f"{TIME_UNIT_ADD}s": 1})
-        while now_midnight <= time_ago:
-            stringified_date = time_ago.strftime("%Y%m%d%H%M%S%f")
+
+        while True:
+            now = datetime.datetime.now()  # replacing seconds for convenience
+            stringified_date = now.strftime(DATE_FORMAT)
             print(f'Creating data for date: {stringified_date}')
             # not the prettiest code.
             kwargs = {
                 'time': stringified_date,
-                'array_float_1': stringify_array([random.uniform(0.0, 200.0) for _ in range(size)]),
-                'array_float_2': stringify_array([random.uniform(0.0, 200.0) for _ in range(size)]),
-                'array_float_3': stringify_array([random.uniform(0.0, 200.0) for _ in range(size)]),
-                'value1': random.uniform(0.0, 200.0),
-                'value2': random.uniform(0.0, 200.0),
-                'value3': random.uniform(0.0, 200.0),
+                'pressure': round(random.uniform(-99.0, 99), 1),
+                'flow': math.cos(int(stringified_date)) + 1,
+                'volume': math.sin(int(stringified_date))+ 1,
+                'ppeak': round(random.uniform(-99.0, 99), 1),
+                'peep': round(random.uniform(-99.0, 99), 1),
+                'pmean': round(random.uniform(-99.0, 99), 1),
+                'rr': round(random.uniform(6.0, 40), 1),
+                'o2conc': round(random.uniform(0.0, 100), 1),
+                'vte': math.ceil(random.uniform(0.0, 1000)),
+                'ie_ratio': f"1:{random.randint(1, 4)}",
+                'mve': round(random.uniform(0.0, 99), 1),
             }
             insert_data(**kwargs)
-            time_ago -= datetime.timedelta(minutes=1)
+            time.sleep(1)
         print('done')
 
 
@@ -68,7 +74,7 @@ def insert_data(retry=False, **kwargs):
     try:
         db.db.session.add(data_to_add)
         db.db.session.commit()
-    except (OperationalError, DatabaseError, Exception):
+    except (OperationalError, DatabaseError, Exception) as e:
         # adding ugly broad Exception for lack of better option as we don't want the backend to stop running
         recover_db(db.db.engine.url.database)
         print("trying to insert data again")

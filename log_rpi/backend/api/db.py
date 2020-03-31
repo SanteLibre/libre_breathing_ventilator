@@ -13,13 +13,19 @@ class VentilatorData(db.Model):
     """
 
     __tablename__ = 'ventilator_data'
-    time = db.Column(db.String(), unique=True, primary_key=True)  # format yyyymmddhhmmssff
-    array_float_1 = db.Column(db.String())  # comma separated floats
-    array_float_2 = db.Column(db.String())  # comma separated floats
-    array_float_3 = db.Column(db.String())  # comma separated floats
-    value1 = db.Column(db.Float())
-    value2 = db.Column(db.Float())
-    value3 = db.Column(db.Float())
+    id = db.Column(db.INT(), autoincrement=True, primary_key=True, unique=True)
+    time = db.Column(db.String(), unique=True)  # format yyyymmddhhmmssff
+    pressure = db.Column(db.Float())
+    flow = db.Column(db.Float())
+    volume = db.Column(db.Float())
+    ppeak = db.Column(db.Float())
+    peep = db.Column(db.Float())
+    pmean = db.Column(db.Float())
+    rr = db.Column(db.Float())
+    o2conc = db.Column(db.Float())
+    vte = db.Column(db.Float())
+    ie_ratio = db.Column(db.String())
+    mve = db.Column(db.Float())
 
     def to_dict(self):
         """
@@ -27,13 +33,19 @@ class VentilatorData(db.Model):
         :return: a dictionnary of the format {attribute_name: attribute_value, ...}
         """
         return {
+            'id': self.id,
             'time': self.time,
-            'array_float_1': [float(val) for val in self.array_float_1.split(',')],
-            'array_float_2': [float(val) for val in self.array_float_2.split(',')],
-            'array_float_3': [float(val) for val in self.array_float_3.split(',')],
-            'value1': self.value1,
-            'value2': self.value2,
-            'value3': self.value3,
+            'pressure': self.pressure,
+            'flow': self.flow,
+            'volume': self.volume,
+            'ppeak': self.ppeak,
+            'peep': self.peep,
+            'pmean': self.pmean,
+            'rr': self.rr,
+            'o2conc': self.o2conc,
+            'vte': self.vte,
+            'ie_ratio': self.ie_ratio,
+            'mve': self.mve,
         }
 
 
