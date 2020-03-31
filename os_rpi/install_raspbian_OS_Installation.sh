@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
+
+#--------------------------------------------------
+# To remove unwanted programs that take too much space
+#--------------------------------------------------
+sudo apt-get  remove thonny sonic-pi sense-emu-tools geany smartsim pytjon-games vlc* libreoffice* scratch -y
+
 #--------------------------------------------------
 # Install Dependencies
 #--------------------------------------------------
 echo -e "\n--- Installing Python 3 + pip3 + virtualEnv --"
 sudo apt-get update
 sudo apt-get install git python3 python3-pip python3-venv virtualenv htop vim tig fbi -y
-
 
 #--------------------------------------------------
 # Set-up python service

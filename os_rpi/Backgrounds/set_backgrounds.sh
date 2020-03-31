@@ -1,38 +1,50 @@
 #!/usr/bin/env bash
 
 
-# Environement variables
-OE_USER="pi"
-OE_HOME="/home/${OE_USER}"
-OE_HOME_lbv="${OE_HOME}/libre_breathing_ventilator"
-OE_BKG="${OE_HOME_lbv}/Backgrounds"
-OE_CONFIG="${OE_USER}"
+echo -e "\n--- Changing the wallpaper image --"
+# sudo cp Background/wallpaper/* /usr/share/desktop-base/active-theme/wallpaper/contents/images
+pcmanfm -w /home/pi/libre_breathing_ventilator/os_rpi/Backgrounds/wallpaper/1920x1200.svg
 
-echo -e "\n--- Changing the splash image --"è
-sudo cp ./systemd/splash.png /usr/share/plymouth/themes/pix/splash.png
+echo -e "\n--- Removing trash on desktop --"
+sudo sed -i 's/show_trash=1/show_trash=0/g' /etc/xdg/pcmanfm/LXDE-pi/desktop-items-0.conf
 
-echo -e "\n--- Changing the backgrounds images (CLI) --"
-
-sudo rm -f /tmp/${OE_CONFIG}
-
-cat <<EOF > /tmp/${OE_CONFIG}
-<background>
-  <static>
-    <duration>8640000.0</duration>
-    <file>
-      <size width="1280" height="1024">${OE_BKG}/wallpaper/1280x1024.svg</size>
-      <size width="1600" height="1200">${OE_BKG}/wallpaper/1600x1200.svg</size>
-      <size width="1920" height="1080">${OE_BKG}/wallpaper/1920x1080.svg</size>
-      <size width="1920" height="1200">${OE_BKG}/wallpaper/1920x1200.svg</size>
-      <size width="2560" height="1080">${OE_BKG}/wallpaper/2560x1080.svg</size>
-      <size width="2560" height="1440">${OE_BKG}/wallpaper/2560x1440.svg</size>
-      <size width="3840" height="2160">${OE_BKG}/wallpaper/3840x2160.svg</size>
-    </file>
-  </static>
-</background>
-EOF
+# echo -e "\n--- Changing the boot CLI background image --"
+# /usr/share/desktop-base/futureprototype-theme/grub/grub-4x3.png ???
 
 
+## Environement variables
+#OE_USER="pi"
+#OE_HOME="/home/${OE_USER}"
+#OE_HOME_lbv="${OE_HOME}/libre_breathing_ventilator"
+#OE_BKG="${OE_HOME_lbv}/Backgrounds"
+#OE_CONFIG="${OE_USER}"
+#
+#echo -e "\n--- Changing the splash image --"è
+#sudo cp ./systemd/splash.png /usr/share/plymouth/themes/pix/splash.png
+#
+#echo -e "\n--- Changing the backgrounds images (CLI) --"
+#
+#sudo rm -f /tmp/${OE_CONFIG}
+#
+#cat <<EOF > /tmp/${OE_CONFIG}
+#<background>
+#  <static>
+#    <duration>8640000.0</duration>
+#    <file>
+#      <size width="1280" height="1024">${OE_BKG}/wallpaper/1280x1024.svg</size>
+#      <size width="1600" height="1200">${OE_BKG}/wallpaper/1600x1200.svg</size>
+#      <size width="1920" height="1080">${OE_BKG}/wallpaper/1920x1080.svg</size>
+#      <size width="1920" height="1200">${OE_BKG}/wallpaper/1920x1200.svg</size>
+#      <size width="2560" height="1080">${OE_BKG}/wallpaper/2560x1080.svg</size>
+#      <size width="2560" height="1440">${OE_BKG}/wallpaper/2560x1440.svg</size>
+#      <size width="3840" height="2160">${OE_BKG}/wallpaper/3840x2160.svg</size>
+#    </file>
+#  </static>
+#</background>
+#EOF
+#
+#echo -e "* Security Init File"
+#sudo cp /tmp/${OE_CONFIG} /etc/systemd/system/${OE_SRV}.service
 #ref. https://scribles.net/customizing-boot-up-screen-on-raspberry-pi/ and https://yingtongli.me/blog/2016/12/21/splash.html
 
 #
