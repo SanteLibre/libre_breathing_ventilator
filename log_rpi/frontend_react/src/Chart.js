@@ -34,9 +34,9 @@ export default function Chart(props) {
             left: 4,
           }}
         >
-          <XAxis dataKey="date" stroke={theme.palette.text.secondary} />
+          <XAxis tick={false} stroke={theme.palette.text.secondary} />
           { data.length && <YAxis stroke={theme.palette.text.secondary} /> }
-          <Line type="monotone" dataKey="value" stroke={props.graphColor} dot={false} strokeWidth={2} />
+          <Line type="monotone" dataKey="value" stroke={props.graphColor} dot={false} strokeWidth={2} isAnimationActive={false}/>
         </LineChart>
       </ResponsiveContainer>
     </Fragment>
