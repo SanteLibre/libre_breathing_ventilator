@@ -9,7 +9,7 @@ echo -e "\n--- Removing trash on desktop --"
 sudo sed -i 's/show_trash=1/show_trash=0/g' /etc/xdg/pcmanfm/LXDE-pi/desktop-items-0.conf
 
 # echo -e "\n--- Changing the boot CLI background image --"
-# /usr/share/desktop-base/futureprototype-theme/grub/grub-4x3.png ???
+sudo cd /home/pi/libre_breathing_ventilator/os_rpi/Backgrounds//usr/share/desktop-base/futureprototype-theme/grub/grub-4x3.png ???
 
 
 ## Environement variables
