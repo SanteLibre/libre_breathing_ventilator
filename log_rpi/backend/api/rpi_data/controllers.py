@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-from log_rpi.backend.api.db import VentilatorData
+from api.db import VentilatorData
 
 bp = Blueprint('rpi_data', __name__, url_prefix='/rpi_data')
 
