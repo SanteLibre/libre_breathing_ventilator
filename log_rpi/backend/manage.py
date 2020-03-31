@@ -1,9 +1,13 @@
-from flask_script import Manager
-from flask_migrate import Migrate, MigrateCommand
-from api import create_app
-from api.db import db
 
+from flask_migrate import Migrate, MigrateCommand
+from flask_script import Manager
+from sqlalchemy.exc import DatabaseError
+
+from api import create_app
+from api.db import db, recover_db
 # sets up the app
+from log_rpi.backend.api.rpi_data.populate_db import populate_db
+
 app = create_app()
 
 manager = Manager(app)
@@ -30,10 +34,23 @@ def recreate_db():
     when there's a new database instance. This shouldn't be
     used when you migrate your database.
     """
-    db.drop_all()
-    db.create_all()
-    db.session.commit()
+    try:
+        db.drop_all()
+        db.create_all()
+        db.session.commit()
+    except DatabaseError:
+        recover_db(db.engine.url.database)
+
+
+@manager.command
+def populate_db_sim():
+    """
+    Populates the db with test data
+    :return: None
+    """
+    populate_db(simulation=True)
 
 
 if __name__ == "__main__":
     manager.run()
+

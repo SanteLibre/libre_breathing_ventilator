@@ -1,14 +1,16 @@
-import os
 import logging
+import os
 
 from flask import Flask, request
 from flask_cors import CORS
-from flask_migrate import Migrate
-from sqlalchemy_utils import create_database, database_exists
 from flask_jwt_extended import JWTManager
+from flask_migrate import Migrate
+from sqlalchemy.exc import DatabaseError
+from sqlalchemy_utils import create_database, database_exists
 
 from api.config import config
 from api.core import all_exception_handler, init_jtw_security
+from api.db import recover_db
 
 
 class RequestFormatter(logging.Formatter):
@@ -71,11 +73,13 @@ def create_app(test_config=None):
     if env != "prod":
         db_url = app.config["SQLALCHEMY_DATABASE_URI"]
         if not database_exists(db_url):
-            create_database(db_url)
+            try:
+                create_database(db_url)
+            except DatabaseError:
+                recover_db(db_url.replace('sqlite:///', ''))
 
     # register sqlalchemy to this app
     from api.db import db
-
     db.init_app(app)  # initialize Flask SQLALchemy with this flask app
     Migrate(app, db)
 
