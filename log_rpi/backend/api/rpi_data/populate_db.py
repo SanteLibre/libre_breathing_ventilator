@@ -54,7 +54,7 @@ def populate_db(simulation=False, **kwargs):
         print('done')
 
 
-def insert_data(**kwargs):
+def insert_data(retry=False, **kwargs):
     """
     Inserts formatted data in ventilator_data table.
     If db is somehow corrupt, tries to recover.
@@ -72,7 +72,10 @@ def insert_data(**kwargs):
         # adding ugly broad Exception for lack of better option as we don't want the backend to stop running
         recover_db(db.db.engine.url.database)
         print("trying to insert data again")
-        insert_data(**kwargs)
+        if not retry:
+            insert_data(retry=True, **kwargs)
+        else:
+            raise
 
 
 def enough_freespace():
