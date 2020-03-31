@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# environement variables
+# Environement variables
 OE_USER="pi"
 OE_HOME="/home/${OE_USER}"
 OE_HOME_lbv="${OE_HOME}/libre_breathing_ventilator"
