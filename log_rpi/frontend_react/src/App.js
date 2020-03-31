@@ -59,7 +59,7 @@ function App() {
     fetch(url)
       .then(response => response.json())
       .then(setResponse);
-  }, 200);
+  }, 1000);
 
   const darkTheme = createMuiTheme({
     palette: {
