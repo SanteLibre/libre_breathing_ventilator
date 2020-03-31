@@ -20,15 +20,16 @@ export default function DataCard({
   title,
   value,
   unit,
+  textColor
 }) {
   const classes = useStyles();
   return (
     <Fragment>
       <Title className={classes.title}>{title}</Title>
-      <Typography component="p" variant="h1" className={classes.value} color="secondary">
+      <Typography component="p" variant="h1" className={classes.value} style={{color: textColor}}>
         {value}
       </Typography>
-      <Typography color="textSecondary" className={classes.unit}>
+      <Typography color="textSecondary" className={classes.unit} >
         {unit}
       </Typography>
     </Fragment>
