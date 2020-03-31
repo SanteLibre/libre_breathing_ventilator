@@ -24,16 +24,16 @@ Application requires a database to correctly run. It can be any database SQLAlch
 
 That's it! Now your application is running at port 3001 and you can access it by typing `http://localhost:3001/` in your browser.
 
-### Running Angular front end
+### Running React front end
 
-Before running Angular you need to have node installed 
+Before running React you need to have node installed 
 
 0) Install nodejs. You can download it using you operating system package manager or from [here](https://nodejs.org/en/download/).
 
-1) Go to the *front end* folder `cd frontend`
+1) Go to the *frontend_react* folder `cd frontend_react`
 
 2) Run commands `npm install` and `npm start`
-3) Open `http://localhost:4200` in your browser
+3) Open `http://localhost:3000` in your browser
 4) create new user using interface and start working with app
 
 ## Issue tracking
