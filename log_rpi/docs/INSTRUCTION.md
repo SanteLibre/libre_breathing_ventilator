@@ -24,79 +24,15 @@ Application requires a database to correctly run. It can be any database SQLAlch
 
 That's it! Now your application is running at port 3001 and you can access it by typing `http://localhost:3001/` in your browser.
 
-### Running Angular front end
+### Running React front end
 
-Before running Angular you need to have node installed 
+Before running React you need to have node installed 
 
 0) Install nodejs. You can download it using you operating system package manager or from [here](https://nodejs.org/en/download/).
 
-1) Go to the *front end* folder `cd frontend`
+1) Go to the *frontend_react* folder `cd frontend_react`
 
 2) Run commands `npm install` and `npm start`
-3) Open `http://localhost:4200` in your browser
+3) Open `http://localhost:3000` in your browser
 4) create new user using interface and start working with app
 
-## Issue tracking
-You can post issues and see sample materials at [GitHub Support Repository](https://github.com/akveo/ngx-admin-bundle-support/issues)
-
-### Other Commands
-```bash
-# development
-$ npm run start
-# development with watch mode - code will be rebuild after each change. it runs `nodemon` module to watch over changes and re-run node api automatically. 
-$ npm run start:dev
-# build dist for prod deployment
-$ npm run build
-# production mode
-$ npm run start:prod
-```
-
-## Test
-```bash
-# unit tests
-$ npm run test
-# e2e tests
-$ npm run test:e2e
-# test coverage
-$ npm run test:cov
-```
-
-## Style Check
-```bash
-# lint
-$ npm run lint
-```
-
-## Features
- - Flask framework, feature based modules
- - Compatible with ngx-admin out of the box
- - JWT authentication using flask-jwt-extended module
- - PostgreSQL, MySQL, Oracle, Microsoft SQL Server, and SQLite can be used as databases
- - SQLAlchemy is used as database toolkit for data CRUD operations
- - Compression setup for API
- - Logging to constole and files
- - werkzeug is used for better experience while develop
- - 6 months free updates
- 
-## Basic Code Structure
-Code is organized in following structure
- - Main Folder
-    - frontend // this folder contains all UI code
-    - backend // server side Flask code
-        - api // this is where all project files located
-            - auth // auth module and code there
-            - user // user module and code there
-            - \_\_init\_\_.py // this is where flask app is created
-            - config.py // configuration reading code is here
-            - core.py // general module independent code
-            - db.py // database initialization
-            - email.py // code that sends emails
-        - email.py // application runner
-
-    - docs // documentation and licenses
-
-## Support
-Please post issues in [Bundle Support Issue Tracker](https://github.com/akveo/ngx-admin-bundle-support/issues)
- 
-## License
-Flask bundle is dual-lincesed under Single Application or Multi Application license when it was purchased and under GNU AFFERO GENERAL PUBLIC LICENSE Version 3 when it was not. Please find details in License files.
