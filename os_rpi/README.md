@@ -11,20 +11,21 @@ TBD
 
 1. Clone this repo in your **home directory** `git clone https://github.com/sante-libre/libre_breathing_ventilator.git`
 2. Enter folder `cd libre_breathing_ventilator`
-3. Change right for install script `chmod +x install_raspbian_OS_Installation`
-4. Run installation script `./install_raspbian_OS_Installation`
-5. Reboot and see the hello world page in kiosk mode`reboot`
-6. To close chromium use the command to open menu and run `sudo killall chromium`
+3. Run installation script `./install_raspbian_OS_Installation`
+4. Reboot  `reboot`
+5. See the interface page in kiosk mode
+5. (If required) To force close chromium use the command to open menu and run `sudo killall chromium`
 
 
 ### What it does... 
 
-The html.py will run at start-up and then chromium will load the webpage fullsreen.
+The html.py will run at start-up and then chromium will load the web page in kiosk mode (full screen without menu bar).
+The wallpaper and background image are changed for the project images.
 
 
-## VirtualBox set-up (windows)
+## VirtualBox set-up (windows) for testing the scripts and programs without having a RPI
 
-1. Install VirtualBox and creata a new VM
+1. Install VirtualBox and create a a new VM
 2. Create a vm using our image (option 1)  https://drive.google.com/drive/folders/1gONyFlPbzX5rJBqfmRBiUqHsqWsTmAgy
     ```
         1. Type: Linux  / Other Linux (32bits)
